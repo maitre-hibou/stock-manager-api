@@ -123,4 +123,15 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Application configuration
+    |--------------------------------------------------------------------------
+    |
+    | User defined application configuration.
+    |
+    */
+    'api' => [
+        'version' => '0.0.1',
+    ],
 ];
