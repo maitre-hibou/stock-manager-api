@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Contracts\Validation\Validator as ValidatorContract;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 abstract class StoreController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): JsonResponse
     {
         $validator = $this->getValidator($request);
 
@@ -26,7 +27,7 @@ abstract class StoreController extends Controller
         ], Response::HTTP_CREATED);
     }
 
-    abstract protected function getValidator(Request $request): ?Validator;
+    abstract protected function getValidator(Request $request): ValidatorContract;
 
     abstract protected function execute(Request $request, array $validated = []): string;
 }

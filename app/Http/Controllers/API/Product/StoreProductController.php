@@ -24,7 +24,7 @@ final class StoreProductController extends StoreController
         return $product->id;
     }
 
-    protected function getValidator(Request $request): ?ValidatorContract
+    protected function getValidator(Request $request): ValidatorContract
     {
         return Validator::make($request->all(), [
             'title' => 'required',
