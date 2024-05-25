@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware\Auth;
+namespace App\Http\Middleware\Authentication;
 
 use App\Models\User;
 use Closure;
