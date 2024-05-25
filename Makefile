@@ -21,6 +21,7 @@ start: prepare
 .PHONY: down prepare start
 
 db:
+	@${SAIL_EXEC} artisan db:wipe
 	@${SAIL_EXEC} artisan migrate
 	@${SAIL_EXEC} artisan db:seed
 
