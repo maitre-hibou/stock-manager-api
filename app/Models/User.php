@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -52,6 +53,7 @@ class User extends Authenticatable
         return [
             'name' => $this->name,
             'email' => $this->email,
+            'role' => $this->role,
         ];
     }
 }
