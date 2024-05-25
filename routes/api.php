@@ -13,6 +13,7 @@ Route::prefix('api')->group(function () {
 
     Route::prefix('product')->group(function () {
         Route::get('/', APIControllers\Product\ListProductController::class)->name('api_product_list');
+        Route::get('/{product}', APIControllers\Product\ReadProductController::class)->name('api_product_read');
     });
 });
 
