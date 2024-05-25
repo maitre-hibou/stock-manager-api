@@ -18,6 +18,7 @@ Route::prefix('api')->group(function () {
 
         Route::middleware([AuthMiddleWare\EnsureJWTAuthentication::class])->group(function () {
             Route::post('/', APIControllers\Product\StoreProductController::class)->name('api_product_store');
+            Route::put('/{product}', APIControllers\Product\UpdateProductController::class)->name('api_product_update');
         });
     });
 });
