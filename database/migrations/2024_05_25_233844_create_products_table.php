@@ -19,6 +19,8 @@ return new class extends Migration
             $table->integer('price');
             $table->float('vat')->default(ProductInterface::VAT_20);
             $table->timestamps();
+
+            $table->foreignId('owner_id')->nullable()->constrained('users');
         });
     }
 

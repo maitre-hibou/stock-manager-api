@@ -19,6 +19,7 @@ final class StoreProductController extends StoreController
             'description' => $request->get('description'),
             'price' => $request->get('price'),
             'vat' => $request->get('vat'),
+            'owner_id' => $request->user()->id,
         ]);
 
         return $product->id;
