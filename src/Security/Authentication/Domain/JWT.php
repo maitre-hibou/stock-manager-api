@@ -122,4 +122,9 @@ class JWT implements Stringable
 
         return ((int) $this->payload()['iat']) + $ttl;
     }
+
+    public function isStillValid(): bool
+    {
+        return $this->expires() > time();
+    }
 }
