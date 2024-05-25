@@ -112,4 +112,13 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Application configuration
+    |--------------------------------------------------------------------------
+    |
+    | User defined configuration.
+    |
+    */
+    'jwt_encrypt_key' => env('JWT_ENCRYPT_KEY'),
 ];
