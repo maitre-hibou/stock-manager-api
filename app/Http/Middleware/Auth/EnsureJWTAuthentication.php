@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middleware\Auth;
 
 use App\Models\User;
 use Closure;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Xp\StockManager\Security\Authentication\Domain\Exception\InvalidJWTException;
 use Xp\StockManager\Security\Authentication\Domain\JWT;
 
-class EnsureJWTAuthentication
+final class EnsureJWTAuthentication
 {
     /**
      * Handle an incoming request.
