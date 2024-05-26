@@ -20,7 +20,7 @@ abstract class UpdateController extends Controller
             return response()->json(['message' => 'Record not found'], Response::HTTP_NOT_FOUND);
         }
 
-        if (false === Gate::allows($this->getExecutionGate(), $model)) {
+        if (is_string($this->getExecutionGateAbility()) && false === Gate::allows($this->getExecutionGateAbility(), $model)) {
             return response()->json(['message' => 'You are not allowed to edit this record.'], Response::HTTP_UNAUTHORIZED);
         }
 
@@ -46,7 +46,10 @@ abstract class UpdateController extends Controller
 
     abstract protected function getValidator(Request $request): ValidatorContract;
 
-    abstract protected function getExecutionGate(): ?string;
+    protected function getExecutionGateAbility(): ?string
+    {
+        return null;
+    }
 
     protected function getModelOwnerField(): string
     {

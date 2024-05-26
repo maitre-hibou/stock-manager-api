@@ -28,7 +28,7 @@ final class UpdateProductController extends UpdateController
         return Product::find($id);
     }
 
-    protected function getExecutionGate(): ?string
+    protected function getExecutionGateAbility(): ?string
     {
         return 'edit_product';
     }

@@ -23,8 +23,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::before(function (User $user, string $ability) {
+            if (Role::ADMIN->value === $user->role) {
+                return true;
+            }
+
+            return null;
+        });
+
         Gate::define('edit_product', function (User $user, Product $product) {
-            return Role::ADMIN->value === $user->role || $product->owner === $user;
+            return $product->owner->id === $user->id;
         });
     }
 }
