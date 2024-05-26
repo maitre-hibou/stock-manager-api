@@ -34,5 +34,9 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('edit_product', function (User $user, Product $product) {
             return $product->owner->id === $user->id;
         });
+
+        Gate::define('delete_product', function (User $user, Product $product) {
+            return $product->owner->id === $user->id;
+        });
     }
 }
