@@ -31,6 +31,7 @@ Route::prefix('api')->group(function () {
         ])
         ->group(function () {
             Route::get('/', APIControllers\StockMovement\ListStockMovementController::class)->name('api_stock_movement_list');
+            Route::post('/', APIControllers\StockMovement\StoreStockMovementController::class)->name('api_stock_movement_store');
         });
 });
 
