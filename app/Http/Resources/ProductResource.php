@@ -20,7 +20,7 @@ class ProductResource extends JsonResource
     {
         $quantity = 0;
         /** @var StockMovement $stockMovement */
-        foreach ($this->stockMovements() as $stockMovement) {
+        foreach ($this->stockMovements as $stockMovement) {
             $quantity = match($stockMovement->direction) {
                 MovementInterface::DIRECTION_IN => $quantity += $stockMovement->quantity,
                 MovementInterface::DIRECTION_OUT => $quantity -= $stockMovement->quantity,
