@@ -19,4 +19,9 @@ class StockMovement extends Model implements MovementInterface
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
+
+    public function getUpdatedAtColumn(): ?string
+    {
+        return null;
+    }
 }
