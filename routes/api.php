@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API as APIControllers;
 use App\Http\Middleware\Authentication as AuthenticationMiddleware;
+use App\Http\Middleware\Authorization as AuthorizationMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,15 @@ Route::prefix('api')->group(function () {
             Route::delete('/{product}', APIControllers\Product\DeleteProductController::class)->name('api_product_delete');
         });
     });
+
+    Route::prefix('stock_movement')
+        ->middleware([
+            AuthenticationMiddleware\EnsureJWTAuthentication::class,
+            AuthorizationMiddleware\EnsureIsAdmin::class
+        ])
+        ->group(function () {
+            Route::get('/', APIControllers\StockMovement\ListStockMovementController::class)->name('api_stock_movement_list');
+        });
 });
 
 
