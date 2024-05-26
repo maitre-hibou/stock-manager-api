@@ -29,4 +29,9 @@ class Product extends Model implements ProductInterface
     {
         return $this->belongsTo(User::class, 'owner_id');
     }
+
+    public function stockMovements(): HasMany
+    {
+        return $this->hasMany(StockMovement::class);
+    }
 }
