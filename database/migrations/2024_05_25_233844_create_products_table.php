@@ -20,7 +20,7 @@ return new class extends Migration
             $table->float('vat')->default(ProductInterface::VAT_20);
             $table->timestamps();
 
-            $table->foreignId('owner_id')->nullable()->constrained('users');
+            $table->foreignUuid('owner_id')->nullable()->constrained('users');
         });
     }
 
