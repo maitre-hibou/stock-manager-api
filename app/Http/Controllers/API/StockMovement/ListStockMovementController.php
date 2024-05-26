@@ -14,7 +14,7 @@ final class ListStockMovementController extends ListController
     public function __invoke(): ResourceCollection
     {
         return StockMovementResource::collection(
-            StockMovement::paginate(self::PER_PAGE)
+            StockMovement::orderByDesc('created_at')->paginate(self::PER_PAGE)
         );
     }
 }

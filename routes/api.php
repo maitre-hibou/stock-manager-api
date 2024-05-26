@@ -21,6 +21,9 @@ Route::prefix('api')->group(function () {
             Route::post('/', APIControllers\Product\StoreProductController::class)->name('api_product_store');
             Route::put('/{product}', APIControllers\Product\UpdateProductController::class)->name('api_product_update');
             Route::delete('/{product}', APIControllers\Product\DeleteProductController::class)->name('api_product_delete');
+
+            Route::get('/{product}/stock_movements', APIControllers\Product\StockMovement\ListProductStockMovementController::class)->name('api_product_stock_movements_list');
+            Route::post('/{product}/stock_movements', APIControllers\Product\StockMovement\StoreProductStockMovementController::class)->name('api_product_stock_movements_store');
         });
     });
 
