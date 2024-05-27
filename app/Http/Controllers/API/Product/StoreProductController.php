@@ -18,7 +18,7 @@ final class StoreProductController extends StoreController
     {
         $product = Product::create([
             'title' => $validated['title'],
-            'description' => $validated['description'],
+            'description' => $validated['description'] ?? null,
             'price' => (int) $validated['price'],
             'vat' => $validated['vat'],
             'owner_id' => $request->user()->id,
