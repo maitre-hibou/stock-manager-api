@@ -1,5 +1,6 @@
-include .env
 SAIL_EXEC=./vendor/bin/sail
+
+.DEFAULT_GOAL := start
 
 down: prepare
 	@-docker network disconnect stock-manager-api_sail local_proxy
@@ -31,6 +32,6 @@ frontend:
 	fi
 	${SAIL_EXEC} npm run build
 
-install: db frontend
+install: db
 
 .PHONY: db frontend install
