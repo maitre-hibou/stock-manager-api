@@ -134,4 +134,5 @@ return [
     'api' => [
         'version' => '0.0.1',
     ],
+    'admin_email' => 'admin@stock-manager.local',
 ];

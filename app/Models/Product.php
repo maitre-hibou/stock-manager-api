@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Xp\StockManager\Catalog\Domain\ProductInterface;
+use Xp\StockManager\Stock\Domain\MovementInterface;
 
 /**
  * @property string $title
@@ -33,5 +34,19 @@ class Product extends Model implements ProductInterface
     public function stockMovements(): HasMany
     {
         return $this->hasMany(StockMovement::class);
+    }
+
+    public function getQuantity(): int
+    {
+        $quantity = 0;
+        /** @var StockMovement $stockMovement */
+        foreach ($this->stockMovements as $stockMovement) {
+            $quantity = match($stockMovement->direction) {
+                MovementInterface::DIRECTION_IN => $quantity += $stockMovement->quantity,
+                MovementInterface::DIRECTION_OUT => $quantity -= $stockMovement->quantity,
+            };
+        }
+
+        return $quantity;
     }
 }

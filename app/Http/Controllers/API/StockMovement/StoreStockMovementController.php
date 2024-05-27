@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\StockMovement;
 
+use App\Events\ProductLowStock;
 use App\Http\Controllers\API\StoreController;
+use App\Models\Product;
 use App\Models\StockMovement;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 use Illuminate\Http\Request;
@@ -21,6 +23,12 @@ final class StoreStockMovementController extends StoreController
             'direction' => $validated['direction'],
             'quantity' => $validated['quantity'],
         ]);
+
+        $product = Product::find($validated['product_id']);
+
+        if ($product->getQuantity() <= 5) {
+            ProductLowStock::dispatch($product);
+        }
 
         return (string) $stockMovement->id;
     }

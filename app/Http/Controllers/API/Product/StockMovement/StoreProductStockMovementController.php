@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API\Product\StockMovement;
 
+use App\Events\ProductLowStock;
 use App\Http\Controllers\API\SubresourceStoreController;
 use App\Models\Product;
 use App\Models\StockMovement;
@@ -23,6 +24,10 @@ final class StoreProductStockMovementController extends SubresourceStoreControll
             'direction' => $validated['direction'],
             'quantity' => $validated['quantity'],
         ]);
+
+        if ($parentResource instanceof Product && $parentResource->getQuantity() <= 5) {
+            ProductLowStock::dispatch($parentResource);
+        }
 
         return (string) $stockMovement->id;
     }
