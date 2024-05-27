@@ -49,7 +49,7 @@ final class LoginController extends Controller
         }
 
         if (!$userProvider->validateCredentials($user, $credentials)) {
-            return response()->json(['message' => sprintf('Unable to authenticate user with emssail %s', $request->get('email'))], Response::HTTP_NOT_ACCEPTABLE);
+            return response()->json(['message' => sprintf('Unable to authenticate user with email %s', $request->get('email'))], Response::HTTP_NOT_ACCEPTABLE);
         }
 
         $jwt = $this->generateJWT($user->jwtSerialize());
