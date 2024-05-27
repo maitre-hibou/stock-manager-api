@@ -18,22 +18,13 @@ class ProductResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $quantity = 0;
-        /** @var StockMovement $stockMovement */
-        foreach ($this->stockMovements as $stockMovement) {
-            $quantity = match($stockMovement->direction) {
-                MovementInterface::DIRECTION_IN => $quantity += $stockMovement->quantity,
-                MovementInterface::DIRECTION_OUT => $quantity -= $stockMovement->quantity,
-            };
-        }
-
         return [
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
             'price' => $this->price,
             'vat' => $this->vat,
-            'quantity' => $quantity,
+            'quantity' => $this->getQuantity(),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'owner' => new ProductOwnerResource($this->owner),
