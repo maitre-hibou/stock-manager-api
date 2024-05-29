@@ -15,10 +15,10 @@ class StockMovementResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'product_id' => $this->product->id,
             'quantity' => $this->quantity,
             'direction' => $this->direction,
             'created_at' => $this->created_at,
+            'product' => new ProductResource($this->product),
         ];
     }
 }
